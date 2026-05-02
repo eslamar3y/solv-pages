@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Solv Digital Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #06101f;
+      --bg2: #0c1a2e;
+      --card: #0f2040;
+      --blue: #2d7ef7;
+      --blue2: #4d9fff;
+      --glow: rgba(45, 126, 247, .25);
+      --cyan: #00d4ff;
+      --text: #f0f6ff;
+      --muted: #8ba8c8;
+      --dim: #4d6a8a;
+      --border: rgba(45, 126, 247, .15);
+      --border2: rgba(45, 126, 247, .35);
+      --r: 14px;
+      --rs: 8px;
+      --nav: 72px
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--blue);
+      border-radius: 3px
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: var(--nav);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      background: rgba(6, 16, 31, .75);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: background .3s
+    }
+
+    nav.scrolled {
+      background: rgba(6, 16, 31, .95);
+      border-bottom-color: var(--border2)
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .logo-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -.5px
+    }
+
+    .logo-tag {
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: .3px;
+      line-height: 1;
+      margin-top: 2px
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--rs);
+      transition: color .2s, background .2s
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, .05)
+    }
+
+    .nav-links a.active {
+      color: var(--blue);
+      background: rgba(45, 126, 247, .08)
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      background: var(--blue);
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: var(--rs);
+      border: none;
+      cursor: pointer;
+      transition: all .25s;
+      box-shadow: 0 0 20px var(--glow)
+    }
+
+    .nav-btn:hover {
+      background: var(--blue2);
+      transform: translateY(-1px)
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px
+    }
+
+    .burger span {
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s
+    }
+
+    .burger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg)
+    }
+
+    .burger.open span:nth-child(2) {
+      opacity: 0
+    }
+
+    .burger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg)
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: calc(var(--nav) + 60px) 5% 70px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: radial-gradient(ellipse at 80% 50%, rgba(45, 126, 247, .1), transparent 70%);
+      pointer-events: none
+    }
+
+    .page-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(45, 126, 247, .12);
+      border: 1px solid var(--border2);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue2);
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 20px
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 18px
+    }
+
+    .hl {
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 100px 5%
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--blue);
+      margin-bottom: 16px
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--blue)
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      line-height: 1.15
+    }
+
+    .section-desc {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 60px
+    }
+
+    .center {
+      text-align: center
+    }
+
+    .center .section-label {
+      justify-content: center
+    }
+
+    .center .section-desc {
+      margin: 0 auto 60px
+    }
+
+    /* SERVICE CARDS */
+    .svc-list {
+      display: grid;
+      gap: 32px
+    }
+
+    .svc-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+      transition: border-color .3s, box-shadow .3s
+    }
+
+    .svc-card:hover {
+      border-color: var(--border2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .3)
+    }
+
+    .svc-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: rgba(45, 126, 247, .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px
+    }
+
+    .svc-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -.5px
+    }
+
+    .svc-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--blue);
+      background: rgba(45, 126, 247, .1);
+      border: 1px solid rgba(45, 126, 247, .2);
+      border-radius: 100px;
+      padding: 4px 12px
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      background: var(--blue);
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: var(--rs);
+      border: none;
+      cursor: pointer;
+      transition: all .25s;
+      text-decoration: none
+    }
+
+    .btn-primary:hover {
+      background: var(--blue2);
+      transform: translateY(-1px)
+    }
+
+    .features-heading {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px
+    }
+
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted)
+    }
+
+    .check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(45, 126, 247, .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    /* PROCESS */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px
+    }
+
+    .process-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 28px;
+      transition: border-color .3s, transform .3s
+    }
+
+    .process-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-4px)
+    }
+
+    .process-num {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--blue);
+      opacity: .4;
+      letter-spacing: -1px;
+      margin-bottom: 12px
+    }
+
+    .process-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px
+    }
+
+    .process-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6
+    }
+
+    /* STACK */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px
+    }
+
+    .stack-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px
+    }
+
+    .stack-group {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--blue);
+      margin-bottom: 14px
+    }
+
+    .stack-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .stack-item {
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .stack-item::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--blue);
+      border-radius: 50%;
+      flex-shrink: 0
+    }
+
+    /* CTA BOX */
+    .cta-box {
+      background: linear-gradient(135deg, rgba(45, 126, 247, .12), rgba(0, 212, 255, .06));
+      border: 1px solid var(--border2);
+      border-radius: 24px;
+      padding: 70px 60px;
+      text-align: center
+    }
+
+    .cta-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 14px
+    }
+
+    .cta-desc {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 36px;
+      line-height: 1.7
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 60px 5% 30px
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 60px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .footer-desc {
+      font-size: 14px;
+      color: var(--dim);
+      line-height: 1.7;
+      max-width: 240px;
+      margin: 16px 0 24px
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px
+    }
+
+    .social {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--rs);
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dim);
+      font-size: 11px;
+      font-weight: 700;
+      transition: all .2s;
+      text-decoration: none
+    }
+
+    .social:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      transform: translateY(-2px)
+    }
+
+    .col-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px
+    }
+
+    .col-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .col-links a {
+      color: var(--dim);
+      font-size: 14px;
+      transition: color .2s
+    }
+
+    .col-links a:hover {
+      color: var(--blue)
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 28px
+    }
+
+    .copy {
+      font-size: 13px;
+      color: var(--dim)
+    }
+
+    .copy span {
+      color: var(--blue)
+    }
+
+    /* FADE */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:1024px) {
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .stack-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px
+      }
+    }
+
+    @media(max-width:768px) {
+      nav .nav-links {
+        display: none;
+        position: absolute;
+        top: var(--nav);
+        left: 0;
+        right: 0;
+        background: rgba(6, 16, 31, .98);
+        padding: 20px;
+        flex-direction: column;
+        border-bottom: 1px solid var(--border)
+      }
+
+      nav .nav-links.open {
+        display: flex
+      }
+
+      .burger {
+        display: flex
+      }
+
+      .nav-btn {
+        display: none !important
+      }
+
+      .logo-tag {
+        display: none
+      }
+
+      .page-hero {
+        padding: calc(var(--nav) + 40px) 6% 50px
+      }
+
+      .hero-title {
+        font-size: clamp(30px, 9vw, 44px)
+      }
+
+      .svc-card {
+        grid-template-columns: 1fr
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr
+      }
+
+      .stack-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .cta-box {
+        padding: 50px 24px
+      }
+
+      .section {
+        padding: 70px 5%
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center
+      }
+    }
+
+    @media(max-width:480px) {
+      .stack-grid {
+        grid-template-columns: 1fr
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="nav">
+    <a href="home.html" class="logo">
+      <!-- <svg viewBox="0 0 36 36" fill="none" width="36" height="36">
+        <rect width="36" height="36" rx="10" fill="#0c1a2e" />
+        <path
+          d="M9 13.5C9 11.01 11.01 9 13.5 9H17C19.21 9 21 10.79 21 13C21 15.21 19.21 17 17 17H19C21.21 17 23 18.79 23 21C23 23.21 21.21 25 19 25H15.5C12.47 25 10 22.53 10 19.5"
+          stroke="#2d7ef7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="27" cy="9" r="3" fill="#00d4ff" />
+      </svg> -->
+      <img src="images/logo.png" style="width: 45px;" alt="Solv Logo">
+      <div style="display:flex;flex-direction:column"><span class="logo-name">Solv</span><span class="logo-tag">you
+          don't just get services — you get results</span></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-btn">Get In Touch</a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="badge">Our Services</div>
+      <h1 class="hero-title">Everything you need to <span class="hl">build &amp; grow</span> digitally.</h1>
+      <p class="hero-desc">From websites to mobile apps to custom digital systems — we build tailored solutions that
+        solve real problems and deliver real results.</p>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="svc-list">
+        <!-- Website Dev -->
+        <div class="svc-card fade-up">
+          <div>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none">
+                <path d="M2 3h20v14H2zM8 21h8M12 17v4" stroke="#2d7ef7" stroke-width="2" stroke-linecap="round" />
+              </svg></div>
+            <div class="svc-title">Website Development</div>
+            <p class="svc-desc">Modern, responsive websites built for performance, trust, and growth. From landing pages
+              to full-scale web applications, we craft digital experiences that convert visitors into customers.</p>
+            <div class="tags"><span class="tag">React</span><span class="tag">Next.js</span><span
+                class="tag">Node.js</span><span class="tag">SEO</span><span class="tag">Responsive Design</span></div>
+            <a href="contact.html" class="btn-primary">Start a Project</a>
+          </div>
+          <div>
+            <div class="features-heading">What's included</div>
+            <div class="features">
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>Custom design tailored to your brand
+              </div>
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>Mobile-first responsive layouts
+              </div>
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>SEO-optimized from the ground up
+              </div>
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>Fast loading &amp; high performance
+              </div>
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>CMS integration &amp; easy management
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Mobile App -->
+        <div class="svc-card fade-up" style="transition-delay:.1s">
+          <div>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none">
+                <rect x="5" y="2" width="14" height="20" rx="2" stroke="#00d4ff" stroke-width="2" />
+                <line x1="12" y1="18" x2="12" y2="18.01" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" />
+              </svg></div>
+            <div class="svc-title">Mobile App Development</div>
+            <p class="svc-desc">Scalable, intuitive mobile apps designed to turn ideas into practical digital products.
+              We build for iOS and Android using the latest cross-platform technology standards.</p>
+            <div class="tags"><span class="tag">iOS</span><span class="tag">Android</span><span class="tag">React
+                Native</span><span class="tag">Flutter</span><span class="tag">App Store</span></div>
+            <a href="contact.html" class="btn-primary">Start a Project</a>
+          </div>
+          <div>
+            <div class="features-heading">What's included</div>
+            <div class="features">
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>Cross-platform iOS &amp; Android apps
+              </div>
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>Intuitive UX design
+              </div>
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>Push notifications &amp; real-time features
+              </div>
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>API integrations &amp; backend services
+              </div>
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>App Store submission &amp; support
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Digital Solutions -->
+        <div class="svc-card fade-up" style="transition-delay:.2s">
+          <div>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" width="26" height="26" fill="none">
+                <circle cx="12" cy="12" r="3" stroke="#8ba8c8" stroke-width="2" />
+                <path
+                  d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M20 12h2M2 12h2M19.07 19.07l-1.41-1.41M12 20v2M12 2v2"
+                  stroke="#8ba8c8" stroke-width="2" stroke-linecap="round" />
+              </svg></div>
+            <div class="svc-title">Digital Solutions</div>
+            <p class="svc-desc">Custom digital solutions that solve real challenges and improve operations. From
+              automation to dashboards, we build systems that save time and drive results.</p>
+            <div class="tags"><span class="tag">APIs</span><span class="tag">Automation</span><span
+                class="tag">Analytics</span><span class="tag">Dashboards</span><span class="tag">Integrations</span>
+            </div>
+            <a href="contact.html" class="btn-primary">Start a Project</a>
+          </div>
+          <div>
+            <div class="features-heading">What's included</div>
+            <div class="features">
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>Workflow automation systems
+              </div>
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>Custom dashboards &amp; analytics
+              </div>
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>Third-party API integrations
+              </div>
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>Data management &amp; reporting
+              </div>
+              <div class="feature">
+                <div class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+                    <polyline points="20 6 9 17 4 12" stroke="#2d7ef7" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg></div>Ongoing maintenance &amp; support
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section" style="background:var(--bg2)">
+    <div class="section-inner">
+      <div class="center fade-up">
+        <div class="section-label">How We Work</div>
+        <h2 class="section-title">Our Process</h2>
+        <p class="section-desc">A proven 6-step process designed to take you from idea to launch with clarity and
+          confidence.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-card fade-up" style="transition-delay:.05s">
+          <div class="process-num">01</div>
+          <div class="process-title">Discovery</div>
+          <p class="process-desc">We listen carefully, ask the right questions, and understand your goals, audience, and
+            technical requirements.</p>
+        </div>
+        <div class="process-card fade-up" style="transition-delay:.1s">
+          <div class="process-num">02</div>
+          <div class="process-title">Strategy &amp; Design</div>
+          <p class="process-desc">We plan the architecture, wireframe user flows, and design experiences that align with
+            your brand.</p>
+        </div>
+        <div class="process-card fade-up" style="transition-delay:.15s">
+          <div class="process-num">03</div>
+          <div class="process-title">Development</div>
+          <p class="process-desc">We build using modern, scalable technologies with clean code and transparent
+            communication throughout.</p>
+        </div>
+        <div class="process-card fade-up" style="transition-delay:.2s">
+          <div class="process-num">04</div>
+          <div class="process-title">Testing &amp; QA</div>
+          <p class="process-desc">We rigorously test across all devices and browsers to ensure quality before anything
+            goes live.</p>
+        </div>
+        <div class="process-card fade-up" style="transition-delay:.25s">
+          <div class="process-num">05</div>
+          <div class="process-title">Launch</div>
+          <p class="process-desc">We deploy your project, monitor performance, and make sure everything runs smoothly
+            from day one.</p>
+        </div>
+        <div class="process-card fade-up" style="transition-delay:.3s">
+          <div class="process-num">06</div>
+          <div class="process-title">Ongoing Support</div>
+          <p class="process-desc">We stay with you after launch — updates, improvements, and support as your business
+            grows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="fade-up">
+        <div class="section-label">Technology</div>
+        <h2 class="section-title">Our Tech Stack</h2>
+        <p class="section-desc">We use modern, battle-tested technologies to build fast, scalable, and maintainable
+          products.</p>
+      </div>
+      <div class="stack-grid">
+        <div class="stack-card fade-up" style="transition-delay:.05s">
+          <div class="stack-group">Frontend</div>
+          <div class="stack-items">
+            <div class="stack-item">React</div>
+            <div class="stack-item">Next.js</div>
+            <div class="stack-item">TypeScript</div>
+            <div class="stack-item">Tailwind CSS</div>
+            <div class="stack-item">Vite</div>
+            <div class="stack-item">Framer Motion</div>
+          </div>
+        </div>
+        <div class="stack-card fade-up" style="transition-delay:.1s">
+          <div class="stack-group">Mobile</div>
+          <div class="stack-items">
+            <div class="stack-item">React Native</div>
+            <div class="stack-item">Expo</div>
+            <div class="stack-item">Flutter</div>
+            <div class="stack-item">Swift</div>
+            <div class="stack-item">Kotlin</div>
+          </div>
+        </div>
+        <div class="stack-card fade-up" style="transition-delay:.15s">
+          <div class="stack-group">Backend</div>
+          <div class="stack-items">
+            <div class="stack-item">Laravel</div>
+            <div class="stack-item">Node.js</div>
+            <div class="stack-item">Express</div>
+            <div class="stack-item">PostgreSQL</div>
+            <div class="stack-item">Redis</div>
+            <div class="stack-item">REST &amp; GraphQL</div>
+          </div>
+        </div>
+        <div class="stack-card fade-up" style="transition-delay:.2s">
+          <div class="stack-group">DevOps &amp; Tools</div>
+          <div class="stack-items">
+            <div class="stack-item">AWS</div>
+            <div class="stack-item">Vercel</div>
+            <div class="stack-item">Docker</div>
+            <div class="stack-item">Git</div>
+            <div class="stack-item">Figma</div>
+            <div class="stack-item">Stripe</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="background:var(--bg2)">
+    <div class="section-inner">
+      <div class="cta-box fade-up">
+        <h2 class="cta-title">Have a project in mind?</h2>
+        <p class="cta-desc">Tell us about your idea and let's figure out the best solution together.</p>
+        <a href="contact.html" class="btn-primary" style="font-size:15px;padding:14px 30px;border-radius:var(--r)">Start
+          a Conversation</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <a href="home.html" class="logo">
+            <!-- <svg viewBox="0 0 36 36" fill="none" width="36" height="36">
+              <rect width="36" height="36" rx="10" fill="#0c1a2e" />
+              <path
+                d="M9 13.5C9 11.01 11.01 9 13.5 9H17C19.21 9 21 10.79 21 13C21 15.21 19.21 17 17 17H19C21.21 17 23 18.79 23 21C23 23.21 21.21 25 19 25H15.5C12.47 25 10 22.53 10 19.5"
+                stroke="#2d7ef7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="27" cy="9" r="3" fill="#00d4ff" />
+            </svg> -->
+            <img src="images/logo.png" style="width: 45px;" alt="Solv Logo">
+            <span class="logo-name">Solv</span></a>
+          <p class="footer-desc">Digital solutions built for growth. We help businesses and startups build a stronger
+            digital presence.</p>
+          <div class="socials"><a href="https://web.facebook.com/profile.php?id=61571995708145" class="social">f</a><a href="https://www.instagram.com/solv_digital_solutions/" class="social">in</a><a href="https://www.linkedin.com/company/solv-digital-solution/" class="social">Li</a></div>
+        </div>
+        <div>
+          <div class="col-title">Social Media</div>
+          <ul class="col-links">
+            <li><a href="https://web.facebook.com/profile.php?id=61571995708145">Facebook</a></li>
+            <li><a href="https://www.instagram.com/solv_digital_solutions/">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/solv-digital-solution/">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-title">Links</div>
+          <ul class="col-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-title">Contact</div>
+          <ul class="col-links">
+            <li><a href="mailto:info@solv.com">info@solv.com</a></li>
+            <li><a href="https://wa.me/+962797956096">WhatsApp: +962 797 956 096</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copy">&copy; 2026 <span>Solv Digital Solutions</span>. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', scrollY > 30));
+    const burger = document.getElementById('burger'), links = document.getElementById('navLinks');
+    burger.addEventListener('click', () => { burger.classList.toggle('open'); links.classList.toggle('open') });
+    const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target) } }), { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+</body>
+
+</html>

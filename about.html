@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Solv Digital Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #06101f;
+      --bg2: #0c1a2e;
+      --card: #0f2040;
+      --blue: #2d7ef7;
+      --blue2: #4d9fff;
+      --glow: rgba(45, 126, 247, .25);
+      --cyan: #00d4ff;
+      --text: #f0f6ff;
+      --muted: #8ba8c8;
+      --dim: #4d6a8a;
+      --border: rgba(45, 126, 247, .15);
+      --border2: rgba(45, 126, 247, .35);
+      --r: 14px;
+      --rs: 8px;
+      --nav: 72px
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--blue);
+      border-radius: 3px
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: var(--nav);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      background: rgba(6, 16, 31, .75);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: background .3s
+    }
+
+    nav.scrolled {
+      background: rgba(6, 16, 31, .95);
+      border-bottom-color: var(--border2)
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .logo-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--blue);
+      letter-spacing: -.5px
+    }
+
+    .logo-tag {
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: .3px;
+      line-height: 1;
+      margin-top: 2px
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--rs);
+      transition: color .2s, background .2s
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, .05)
+    }
+
+    .nav-links a.active {
+      color: var(--blue);
+      background: rgba(45, 126, 247, .08)
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      background: var(--blue);
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: var(--rs);
+      border: none;
+      cursor: pointer;
+      transition: all .25s
+    }
+
+    .nav-btn:hover {
+      background: var(--blue2);
+      transform: translateY(-1px)
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px
+    }
+
+    .burger span {
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s
+    }
+
+    .burger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg)
+    }
+
+    .burger.open span:nth-child(2) {
+      opacity: 0
+    }
+
+    .burger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg)
+    }
+
+    .page-hero {
+      padding: calc(var(--nav) + 60px) 5% 70px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: radial-gradient(ellipse at 80% 50%, rgba(45, 126, 247, .1), transparent 70%);
+      pointer-events: none
+    }
+
+    .page-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(45, 126, 247, .12);
+      border: 1px solid var(--border2);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue2);
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      margin-bottom: 20px
+    }
+
+    .hero-title {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 18px
+    }
+
+    .hl {
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7
+    }
+
+    .section {
+      padding: 100px 5%
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--blue);
+      margin-bottom: 16px
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--blue)
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      line-height: 1.15
+    }
+
+    .center {
+      text-align: center
+    }
+
+    .center .section-label {
+      justify-content: center
+    }
+
+    .center .section-desc {
+      margin: 0 auto 60px
+    }
+
+    .section-desc {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 60px
+    }
+
+    /* STORY */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center
+    }
+
+    .story-text p {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 20px
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      background: var(--blue);
+      color: #fff;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 30px;
+      border-radius: var(--r);
+      border: none;
+      cursor: pointer;
+      transition: all .25s;
+      text-decoration: none
+    }
+
+    .btn-primary:hover {
+      background: var(--blue2);
+      transform: translateY(-1px)
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 30px;
+      border-radius: var(--r);
+      border: 1px solid var(--border2);
+      cursor: pointer;
+      transition: all .25s;
+      text-decoration: none
+    }
+
+    .btn-outline:hover {
+      background: rgba(45, 126, 247, .1);
+      border-color: var(--blue);
+      color: var(--blue)
+    }
+
+    .mission-box {
+      background: linear-gradient(135deg, rgba(45, 126, 247, .15), rgba(0, 212, 255, .06));
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 16px
+    }
+
+    .mission-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px
+    }
+
+    .mission-text {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.6
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px;
+      text-align: center
+    }
+
+    .stat-num {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--blue);
+      letter-spacing: -1px
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--dim);
+      margin-top: 4px
+    }
+
+    /* VALUES */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px
+    }
+
+    .value-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 28px;
+      transition: transform .3s, border-color .3s
+    }
+
+    .value-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border2)
+    }
+
+    .value-icon {
+      font-size: 28px;
+      margin-bottom: 14px
+    }
+
+    .value-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px
+    }
+
+    .value-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65
+    }
+
+    /* TESTIMONIALS */
+    .t-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px
+    }
+
+    .t-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 28px;
+      transition: transform .3s, border-color .3s
+    }
+
+    .t-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border2)
+    }
+
+    .t-stars {
+      color: #fbbf24;
+      font-size: 15px;
+      margin-bottom: 14px
+    }
+
+    .t-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 20px
+    }
+
+    .t-author {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .t-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0
+    }
+
+    .t-name {
+      font-size: 14px;
+      font-weight: 700
+    }
+
+    .t-role {
+      font-size: 12px;
+      color: var(--dim)
+    }
+
+    /* CTA */
+    .cta-box {
+      background: linear-gradient(135deg, rgba(45, 126, 247, .12), rgba(0, 212, 255, .06));
+      border: 1px solid var(--border2);
+      border-radius: 24px;
+      padding: 70px 60px;
+      text-align: center
+    }
+
+    .cta-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 14px
+    }
+
+    .cta-desc {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 460px;
+      margin: 0 auto 36px;
+      line-height: 1.7
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 60px 5% 30px
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 60px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .footer-desc {
+      font-size: 14px;
+      color: var(--dim);
+      line-height: 1.7;
+      max-width: 240px;
+      margin: 16px 0 24px
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px
+    }
+
+    .social {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--rs);
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dim);
+      font-size: 11px;
+      font-weight: 700;
+      transition: all .2s;
+      text-decoration: none
+    }
+
+    .social:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      transform: translateY(-2px)
+    }
+
+    .col-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px
+    }
+
+    .col-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .col-links a {
+      color: var(--dim);
+      font-size: 14px;
+      transition: color .2s
+    }
+
+    .col-links a:hover {
+      color: var(--blue)
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 28px
+    }
+
+    .copy {
+      font-size: 13px;
+      color: var(--dim)
+    }
+
+    .copy span {
+      color: var(--blue)
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    @media(max-width:1024px) {
+      .story-grid {
+        grid-template-columns: 1fr
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .t-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px
+      }
+    }
+
+    @media(max-width:768px) {
+      nav .nav-links {
+        display: none;
+        position: absolute;
+        top: var(--nav);
+        left: 0;
+        right: 0;
+        background: rgba(6, 16, 31, .98);
+        padding: 20px;
+        flex-direction: column;
+        border-bottom: 1px solid var(--border)
+      }
+
+      nav .nav-links.open {
+        display: flex
+      }
+
+      .burger {
+        display: flex
+      }
+
+      .nav-btn {
+        display: none !important
+      }
+
+      .logo-tag {
+        display: none
+      }
+
+      .page-hero {
+        padding: calc(var(--nav) + 40px) 6% 50px
+      }
+
+      .hero-title {
+        font-size: clamp(30px, 9vw, 44px)
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr
+      }
+
+      .t-grid {
+        grid-template-columns: 1fr
+      }
+
+      .cta-box {
+        padding: 50px 24px
+      }
+
+      .section {
+        padding: 70px 5%
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center
+      }
+    }
+
+    @media(max-width:480px) {
+      .stats-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="nav">
+    <a href="home.html" class="logo">
+      <!-- <svg viewBox="0 0 36 36" fill="none" width="36" height="36">
+        <rect width="36" height="36" rx="10" fill="#0c1a2e" />
+        <path
+          d="M9 13.5C9 11.01 11.01 9 13.5 9H17C19.21 9 21 10.79 21 13C21 15.21 19.21 17 17 17H19C21.21 17 23 18.79 23 21C23 23.21 21.21 25 19 25H15.5C12.47 25 10 22.53 10 19.5"
+          stroke="#2d7ef7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="27" cy="9" r="3" fill="#00d4ff" />
+      </svg> -->
+      <img src="images/logo.png" style="width: 45px;" alt="Solv Logo">
+      <div style="display:flex;flex-direction:column"><span class="logo-name">Solv</span><span class="logo-tag">you
+          don't just get services — you get results</span></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-btn">Get In Touch</a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="badge">About Us</div>
+      <h1 class="hero-title">We're the team behind your <span class="hl">digital success.</span></h1>
+      <p class="hero-desc">Solv Digital Solutions is a digital agency dedicated to helping businesses build powerful
+        online presences — with quality, care, and results that matter.</p>
+    </div>
+  </div>
+
+  <!-- STORY -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="story-grid">
+        <div class="story-text fade-up">
+          <div class="section-label">Our Story</div>
+          <h2 class="section-title">Built to solve. Driven to grow.</h2>
+          <p>Solv was founded with a simple idea: businesses deserve digital partners who actually care about their
+            results — not just deliverables.</p>
+          <p>We started as a small team of engineers and designers who were tired of seeing businesses get generic,
+            cookie-cutter solutions that didn't move the needle. So we built Solv to be different.</p>
+          <p>Today, we've helped 50+ businesses across the region launch products, scale their operations, and grow
+            their digital presence — and we're just getting started.</p>
+          <a href="contact.html" class="btn-primary">Work With Us</a>
+        </div>
+        <div class="fade-up" style="transition-delay:.2s">
+          <div class="mission-box">
+            <div class="mission-label">Our Mission</div>
+            <p class="mission-text">"To build digital solutions that genuinely solve problems and help businesses grow —
+              with quality, honesty, and ongoing partnership."</p>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-num">50+</div>
+              <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">40+</div>
+              <div class="stat-label">Happy Clients</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">3+</div>
+              <div class="stat-label">Years of Experience</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num">98%</div>
+              <div class="stat-label">On-Time Delivery</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section" style="background:var(--bg2)">
+    <div class="section-inner">
+      <div class="center fade-up">
+        <div class="section-label">What We Stand For</div>
+        <h2 class="section-title">Our Values</h2>
+        <p class="section-desc">The principles that guide every decision we make and every line of code we write.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card fade-up" style="transition-delay:.05s">
+          <div class="value-icon">🎯</div>
+          <div class="value-title">Quality First</div>
+          <p class="value-desc">We focus on delivering clean, reliable, and professional digital products that meet real
+            business needs. No shortcuts, no compromises.</p>
+        </div>
+        <div class="value-card fade-up" style="transition-delay:.1s">
+          <div class="value-icon">🤝</div>
+          <div class="value-title">Client-Centered</div>
+          <p class="value-desc">We work closely with clients, keep communication clear, and make the entire process
+            smooth from the first call to final delivery.</p>
+        </div>
+        <div class="value-card fade-up" style="transition-delay:.15s">
+          <div class="value-icon">🚀</div>
+          <div class="value-title">Results-Driven</div>
+          <p class="value-desc">We build solutions that produce measurable outcomes — growth, efficiency, and a stronger
+            digital presence for your business.</p>
+        </div>
+        <div class="value-card fade-up" style="transition-delay:.2s">
+          <div class="value-icon">🔄</div>
+          <div class="value-title">Ongoing Partnership</div>
+          <p class="value-desc">Our relationship doesn't end at launch. We stay available to support, improve, and help
+            you move forward as your business evolves.</p>
+        </div>
+        <div class="value-card fade-up" style="transition-delay:.25s">
+          <div class="value-icon">⚡</div>
+          <div class="value-title">Speed &amp; Efficiency</div>
+          <p class="value-desc">We deliver on time without sacrificing quality. Our proven process keeps projects moving
+            and clients informed at every stage.</p>
+        </div>
+        <div class="value-card fade-up" style="transition-delay:.3s">
+          <div class="value-icon">🔒</div>
+          <div class="value-title">Trust &amp; Transparency</div>
+          <p class="value-desc">We believe in honest communication, realistic timelines, and clear pricing. What you see
+            is what you get — no hidden surprises.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="center fade-up">
+        <div class="section-label">Client Stories</div>
+        <h2 class="section-title">What our clients say</h2>
+        <p class="section-desc">Real results from real businesses that trusted Solv with their digital growth.</p>
+      </div>
+      <div class="t-grid">
+        <div class="t-card fade-up" style="transition-delay:.05s">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-text">"Solv delivered our e-commerce platform ahead of schedule and beyond expectations. The
+            attention to detail and communication throughout was outstanding."</p>
+          <div class="t-author">
+            <div class="t-avatar" style="background:linear-gradient(135deg,#2d7ef7,#00d4ff)">A</div>
+            <div>
+              <div class="t-name">Ahmed Hassan</div>
+              <div class="t-role">CEO, TechStart Egypt</div>
+            </div>
+          </div>
+        </div>
+        <div class="t-card fade-up" style="transition-delay:.1s">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-text">"Our mobile app went from concept to App Store in just 6 weeks. The quality of work and the
+            ongoing support after launch has been incredible."</p>
+          <div class="t-author">
+            <div class="t-avatar" style="background:linear-gradient(135deg,#00d4ff,#2d7ef7)">S</div>
+            <div>
+              <div class="t-name">Sara Al-Rashidi</div>
+              <div class="t-role">Founder, FitFlow App</div>
+            </div>
+          </div>
+        </div>
+        <div class="t-card fade-up" style="transition-delay:.15s">
+          <div class="t-stars">★★★★★</div>
+          <p class="t-text">"The digital solution they built for our operations saved us 20+ hours per week.
+            Professional team, clean code, and they truly understood our business."</p>
+          <div class="t-author">
+            <div class="t-avatar" style="background:linear-gradient(135deg,#4d9fff,#00d4ff)">M</div>
+            <div>
+              <div class="t-name">Mohamed Karim</div>
+              <div class="t-role">Operations Director, LogiPro</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="background:var(--bg2)">
+    <div class="section-inner">
+      <div class="cta-box fade-up">
+        <h2 class="cta-title">Ready to work together?</h2>
+        <p class="cta-desc">Let's build something that makes a difference for your business.</p>
+        <div class="cta-btns">
+          <a href="contact.html" class="btn-primary">Get In Touch</a>
+          <a href="services.html" class="btn-outline">View Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <a href="home.html" class="logo">
+            <!-- <svg viewBox="0 0 36 36" fill="none" width="36" height="36">
+              <rect width="36" height="36" rx="10" fill="#0c1a2e" />
+              <path
+                d="M9 13.5C9 11.01 11.01 9 13.5 9H17C19.21 9 21 10.79 21 13C21 15.21 19.21 17 17 17H19C21.21 17 23 18.79 23 21C23 23.21 21.21 25 19 25H15.5C12.47 25 10 22.53 10 19.5"
+                stroke="#2d7ef7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="27" cy="9" r="3" fill="#00d4ff" />
+            </svg> -->
+            <img src="images/logo.png" style="width: 45px;" alt="Solv Logo">
+            <span class="logo-name">Solv</span></a>
+          <p class="footer-desc">Digital solutions built for growth.</p>
+          <div class="socials"><a href="https://web.facebook.com/profile.php?id=61571995708145" class="social" target="_blank" rel="noopener noreferrer">f</a><a href="https://www.instagram.com/solv_digital_solutions/" class="social" target="_blank" rel="noopener noreferrer">in</a><a href="https://www.linkedin.com/company/solv-digital-solution/" class="social" target="_blank" rel="noopener noreferrer">Li</a></div>
+        </div>
+        <div>
+          <div class="col-title">Social Media</div>
+          <ul class="col-links">
+            <li><a href="https://web.facebook.com/profile.php?id=61571995708145" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a href="https://www.instagram.com/solv_digital_solutions/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/solv-digital-solution/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-title">Links</div>
+          <ul class="col-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="col-title">Contact</div>
+          <ul class="col-links">
+            <li><a href="mailto:info@solv.com">info@solv.com</a></li>
+            <li><a href="https://wa.me/+962797956096">WhatsApp: +962 797 956 096</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copy">&copy; 2026 <span>Solv Digital Solutions</span>. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', scrollY > 30));
+    const burger = document.getElementById('burger'), links = document.getElementById('navLinks');
+    burger.addEventListener('click', () => { burger.classList.toggle('open'); links.classList.toggle('open') });
+    const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target) } }), { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+</body>
+
+</html>
