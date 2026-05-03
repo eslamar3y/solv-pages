@@ -827,7 +827,6 @@
     }
   </style>
 </head>
-
 <body>
 
   <nav id="nav">
@@ -926,8 +925,8 @@
               <div class="form-group"><label class="form-label">Email Address *</label><input class="form-input"
                   type="email" name="email" placeholder="ahmed@company.com" required /></div>
             </div>
-            <div class="form-group"><label class="form-label">Service You're Interested In</label>
-              <select class="form-select" name="service">
+            <div class="form-group"><label class="form-label">Service You're Interested In *</label>
+              <select class="form-select" name="service" required>
                 <option value="">Select a service...</option>
                 <option value="website">Website Development</option>
                 <option value="mobile">Mobile App Development</option>
@@ -1061,5 +1060,31 @@
     });
   </script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+(function () {
+  emailjs.init("qvQVG-MwkdlEKay-c"); // حط Public Key هنا
+})();
 
+document.getElementById("contactForm")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const btn = document.getElementById("submitBtn");
+    btn.innerText = "Sending...";
+
+    emailjs.sendForm(
+      "service_hr2yp9l",   // حط Service ID
+      "template_h23ucnc",  // حط Template ID
+      this
+    ).then(function () {
+      btn.innerText = "Send Message";
+      alert("Message sent successfully ✅");
+    }, function (error) {
+      btn.innerText = "Send Message";
+      alert("Failed ❌");
+      console.log(error);
+    });
+});
+</script>
 </html>
